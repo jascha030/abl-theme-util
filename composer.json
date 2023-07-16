@@ -1,0 +1,38 @@
+{
+    "name": "jascha030/ableton-live-theme-util",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Jascha030\\LiveTheme\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Jascha030\\LiveTheme\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jascha030",
+            "email": "contact@jaschavanaalst.nl"
+        }
+    ],
+    "require": {
+        "symfony/console": "^6.3",
+        "symfony/serializer": "^6.3",
+        "php-di/php-di": "^7.0",
+        "symfony/property-access": "^6.3",
+        "phpdocumentor/reflection-docblock": "^5.3",
+        "doctrine/annotations": "^2.0"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-latest",
+        "bamarni/composer-bin-plugin": "^1.8"
+    },
+    "config": {
+        "allow-plugins": {
+            "bamarni/composer-bin-plugin": true
+        }
+    }
+}
