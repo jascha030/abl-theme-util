@@ -1,0 +1,12 @@
+includes:
+  - vendor-bin/phpstan/vendor/phpstan/phpstan/conf/bleedingEdge.neon
+  #  - phpstan-baseline.neon
+
+parameters:
+  paths:
+    - src
+    - tests
+
+  level: max
+  tmpDir: .var/cache/phpstan
+  editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
