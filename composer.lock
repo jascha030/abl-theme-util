@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "00b3b1a564741edb3200a65b88d7e70a",
+    "content-hash": "eea25bb5b0e996bda180fdb59b82334e",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -205,6 +205,50 @@
                 }
             ],
             "time": "2022-12-15T16:57:16+00:00"
+        },
+        {
+            "name": "jascha030/service-provider",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jascha030/service-provider.git",
+                "reference": "ddd255678f9269fb5ed851e65d09e2b8d6938015"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jascha030/service-provider/zipball/ddd255678f9269fb5ed851e65d09e2b8d6938015",
+                "reference": "ddd255678f9269fb5ed851e65d09e2b8d6938015",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~8.0||~8.1||8.2",
+                "psr/container": "^1||^2"
+            },
+            "require-dev": {
+                "roave/security-advisories": "dev-latest"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jascha030\\DI\\ServiceProvider\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jascha030",
+                    "email": "contact@jaschavanaalst.nl"
+                }
+            ],
+            "description": "Service Provider interface for usage with PSR-11 ContainerInterface, based on container-interop/service-provider.",
+            "support": {
+                "issues": "https://github.com/jascha030/service-provider/issues",
+                "source": "https://github.com/jascha030/service-provider/tree/1.0.0"
+            },
+            "time": "2023-02-05T22:05:22+00:00"
         },
         {
             "name": "laravel/serializable-closure",

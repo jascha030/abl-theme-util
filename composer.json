@@ -24,7 +24,8 @@
         "php-di/php-di": "^7.0",
         "symfony/property-access": "^6.3",
         "phpdocumentor/reflection-docblock": "^5.3",
-        "doctrine/annotations": "^2.0"
+        "doctrine/annotations": "^2.0",
+        "jascha030/service-provider": "^1.0"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",
