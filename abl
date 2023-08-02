@@ -1,0 +1,34 @@
+#!/usr/bin/env php
+<?php
+
+use Symfony\Component\Console\Application;
+
+declare(strict_types=1);
+
+(static function (): void {
+    if (class_exists('Phar')) {
+        try {
+            Phar::mapPhar('abl.phar');
+
+            require_once 'phar://abl.phar/vendor/autoload.php';
+
+            return;
+        } catch (PharException) {
+        }
+    }
+
+    $possibleFiles = ['/../../autoload.php', '/../autoload.php', '/vendor/autoload.php'];
+
+    foreach ($possibleFiles as $possibleFile) {
+        if (file_exists(__DIR__ . $possibleFile)) {
+            require_once __DIR__ . $possibleFile;
+
+            return;
+        }
+    }
+
+    throw new RuntimeException('Unable to locate autoload.php file.');
+})();
+
+$app = new Application('ABL Theme Util', '1.0.0');
+
