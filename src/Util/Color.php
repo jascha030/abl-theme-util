@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace Jascha030\LiveTheme\Util;
 
+use RuntimeException;
+
+use function strlen;
+
 final class Color
 {
     public static function rgbToHex(string $r, string $g, string $b): string
@@ -21,7 +25,7 @@ final class Color
         }
 
         if (null === sscanf($hex, '#%02x%02x%02x')) {
-            throw new \RuntimeException('Invalid format for string: "' . $hex . '".');
+            throw new RuntimeException('Invalid format for string: "' . $hex . '".');
         }
 
         [$r, $g, $b] = sscanf($hex, '#%02x%02x%02x');

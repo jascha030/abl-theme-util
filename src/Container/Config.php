@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace Jascha030\LiveTheme\Container;
 
 use Closure;
+use InvalidArgumentException;
 use Jascha030\DI\ServiceProvider\ServiceProviderInterface;
+
+use function is_string;
 
 class Config
 {
@@ -68,7 +71,7 @@ class Config
     ) {
         $this->providerMap = static function (string|ServiceProviderInterface $provider): ServiceProviderInterface {
             if (! is_subclass_of($provider, ServiceProviderInterface::class)) {
-                throw new \InvalidArgumentException('Argument "$provider" should implement"' . ServiceProviderInterface::class . '".');
+                throw new InvalidArgumentException('Argument "$provider" should implement"' . ServiceProviderInterface::class . '".');
             }
 
             return is_string($provider) ? new $provider() : $provider;
