@@ -1,0 +1,31 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Parameter \\#1 \\$metadataFactory of class Symfony\\\\Component\\\\Serializer\\\\NameConverter\\\\MetadataAwareNameConverter constructor expects Symfony\\\\Component\\\\Serializer\\\\Mapping\\\\Factory\\\\ClassMetadataFactoryInterface, mixed given\\.$#"
+			count: 1
+			path: src/Provider/SerializationProvider.php
+
+		-
+			message: "#^Parameter \\#1 \\$normalizers of class Symfony\\\\Component\\\\Serializer\\\\Serializer constructor expects array\\<Symfony\\\\Component\\\\Serializer\\\\Normalizer\\\\DenormalizerInterface\\|Symfony\\\\Component\\\\Serializer\\\\Normalizer\\\\NormalizerInterface\\>, mixed given\\.$#"
+			count: 1
+			path: src/Provider/SerializationProvider.php
+
+		-
+			message: "#^Parameter \\#2 \\$encoders of class Symfony\\\\Component\\\\Serializer\\\\Serializer constructor expects array\\<Symfony\\\\Component\\\\Serializer\\\\Encoder\\\\DecoderInterface\\|Symfony\\\\Component\\\\Serializer\\\\Encoder\\\\EncoderInterface\\>, mixed given\\.$#"
+			count: 1
+			path: src/Provider/SerializationProvider.php
+
+		-
+			message: "#^Parameter \\$classMetadataFactory of class Symfony\\\\Component\\\\Serializer\\\\Normalizer\\\\ObjectNormalizer constructor expects Symfony\\\\Component\\\\Serializer\\\\Mapping\\\\Factory\\\\ClassMetadataFactoryInterface\\|null, mixed given\\.$#"
+			count: 1
+			path: src/Provider/SerializationProvider.php
+
+		-
+			message: "#^Parameter \\$nameConverter of class Symfony\\\\Component\\\\Serializer\\\\Normalizer\\\\ObjectNormalizer constructor expects Symfony\\\\Component\\\\Serializer\\\\NameConverter\\\\NameConverterInterface\\|null, mixed given\\.$#"
+			count: 1
+			path: src/Provider/SerializationProvider.php
+
+		-
+			message: "#^Parameter \\$propertyTypeExtractor of class Symfony\\\\Component\\\\Serializer\\\\Normalizer\\\\ObjectNormalizer constructor expects Symfony\\\\Component\\\\PropertyInfo\\\\PropertyTypeExtractorInterface\\|null, mixed given\\.$#"
+			count: 1
+			path: src/Provider/SerializationProvider.php
