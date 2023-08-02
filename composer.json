@@ -48,5 +48,14 @@
             "bin-links": true,
             "forward-command": true
         }
+    },
+    "scripts": {
+        "php-cs-fixer": "tools/php-cs-fixer",
+        "phpstan": "vendor/bin/phpstan",
+        "phpunit": "tools/phpunit.phar",
+        "analyze": "@phpstan analyze -c phpstan.neon.dist",
+        "baseline": "@analyze --generate-baseline",
+        "format": "@php-cs-fixer fix --config=.php-cs-fixer.dist.php",
+        "test": "@phpunit -c phpunit.xml.dist"
     }
 }
