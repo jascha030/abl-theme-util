@@ -2,6 +2,12 @@
     "name": "jascha030/ableton-live-theme-util",
     "type": "library",
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Jascha030",
+            "email": "contact@jaschavanaalst.nl"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Jascha030\\LiveTheme\\": "src/"
@@ -12,12 +18,7 @@
             "Jascha030\\LiveTheme\\": "tests/"
         }
     },
-    "authors": [
-        {
-            "name": "Jascha030",
-            "email": "contact@jaschavanaalst.nl"
-        }
-    ],
+    "prefer-stable": true,
     "require": {
         "symfony/console": "^6.3",
         "symfony/serializer": "^6.3",
@@ -32,6 +33,12 @@
         "bamarni/composer-bin-plugin": "^1.8"
     },
     "config": {
+        "platform": {
+            "php": "8.1"
+        },
+        "platform-check": false,
+        "sort-packages": true,
+        "preferred-install": "dist",
         "allow-plugins": {
             "bamarni/composer-bin-plugin": true
         }
