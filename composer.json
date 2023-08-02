@@ -29,8 +29,9 @@
         "jascha030/service-provider": "^1.0"
     },
     "require-dev": {
+        "bamarni/composer-bin-plugin": "^1.8",
         "roave/security-advisories": "dev-latest",
-        "bamarni/composer-bin-plugin": "^1.8"
+        "symfony/var-dumper": "^6.3"
     },
     "config": {
         "platform": {

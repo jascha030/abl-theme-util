@@ -5,6 +5,9 @@ includes:
    - phpstan-baseline.neon
 
 parameters:
+  bootstrapFiles:
+    - tools/phpunit.phar
+
   editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
   level: max
   paths:
