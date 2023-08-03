@@ -5,16 +5,23 @@ declare(strict_types=1);
 namespace Jascha030\LiveTheme\Container;
 
 use Closure;
+use Generator;
 use InvalidArgumentException;
 use Jascha030\DI\ServiceProvider\ServiceProviderInterface;
 
+use function array_map;
 use function is_string;
+use function iterator_to_array;
 
 class Config
 {
     private Closure $providerMap;
 
     private Closure $factoryMap;
+
+    private array $providers = [];
+
+    private array $definitions = [];
 
     /**
      * @var array<string, callable>
@@ -31,9 +38,10 @@ class Config
      */
     public function withProviders(array $providers): static
     {
-        $this->providers = $providers;
+        $new            = clone $this;
+        $new->providers = $providers;
 
-        return $this;
+        return $new;
     }
 
     /**
@@ -41,9 +49,10 @@ class Config
      */
     public function withDefinitions(array $definitions): static
     {
-        $this->definitions = $definitions;
+        $new              = clone $this;
+        $new->definitions = $definitions;
 
-        return $this;
+        return $new;
     }
 
     /**
@@ -52,27 +61,30 @@ class Config
     public function getFactories(): array
     {
         if (null === $this->factories) {
-            /** @var array<string, callable> $factories */
-            $factories = array_map($this->factoryMap, array_map($this->providerMap, $this->providers));
+            $generator = (function (): Generator {
+                /**
+                 * @var array<string, callable> $factories
+                 */
+                $factories = array_map(
+                    $this->factoryMap,
+                    array_map($this->providerMap, $this->providers)
+                );
 
-            $this->factories = array_merge($factories, $this->definitions);
+                foreach ($factories as $f) {
+                    yield from $f;
+                }
+            })();
+
+            $this->factories = array_merge(iterator_to_array($generator), $this->definitions);
         }
 
         return $this->factories;
     }
 
-    /**
-     * @param array<int, class-string|ServiceProviderInterface> $providers
-     * @param array<string, callable>                           $definitions
-     */
-    final private function __construct(
-        private array $providers = [],
-        private array $definitions = [],
-    ) {
+    final private function __construct()
+    {
         $this->providerMap = static function (string|ServiceProviderInterface $provider): ServiceProviderInterface {
-            if (! is_subclass_of($provider, ServiceProviderInterface::class)) {
-                throw new InvalidArgumentException('Argument "$provider" should implement"' . ServiceProviderInterface::class . '".');
-            }
+            is_subclass_of($provider, ServiceProviderInterface::class) || throw new InvalidArgumentException('Argument "$provider" should implement"' . ServiceProviderInterface::class . '".');
 
             return is_string($provider) ? new $provider() : $provider;
         };
