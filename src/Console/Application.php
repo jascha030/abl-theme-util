@@ -12,31 +12,20 @@ use function is_string;
 
 final class Application extends BaseApplication
 {
-    public function __construct(private ContainerInterface $container)
+    public const APP_NAME = 'Live Theme Util';
+
+    /**
+     * @throws \Psr\Container\ContainerExceptionInterface|\Psr\Container\NotFoundExceptionInterface
+     * @throws RuntimeException
+     */
+    public function __construct(private readonly ContainerInterface $container)
     {
         $version = $this->container->get('app.version');
-        $name    = $this->container->get('app.name');
 
-        if (! is_string($name) || ! is_string($version)) {
-            throw self::getException($name, $version);
+        if (! is_string($version)) {
+            throw new RuntimeException('Invalid value type for container binding: "app.version", binding should be of type "string".');
         }
 
-        parent::__construct($name, $version);
-    }
-
-    private static function getException(mixed $name, mixed $version): RuntimeException
-    {
-        $invalidKeys = array_keys(array_filter(
-            [
-                'app.name'    => $name,
-                'app.version' => $version,
-            ],
-            static fn ($v) => ! is_string($v)
-        ));
-
-        return new RuntimeException(sprintf(
-            'Invalid value type for container binding(s): "%s", binding(s) should be of type "string".',
-            implode(', ', $invalidKeys)
-        ));
+        parent::__construct(self::APP_NAME, $version);
     }
 }
