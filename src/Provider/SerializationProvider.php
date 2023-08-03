@@ -11,7 +11,7 @@ use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;
 use Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor;
 use Symfony\Component\PropertyInfo\PropertyInfoExtractor;
 use Symfony\Component\PropertyInfo\PropertyInfoExtractorInterface;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory;
 use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactoryInterface;
 use Symfony\Component\Serializer\Mapping\Loader\AnnotationLoader;
@@ -19,11 +19,15 @@ use Symfony\Component\Serializer\NameConverter\AdvancedNameConverterInterface;
 use Symfony\Component\Serializer\NameConverter\MetadataAwareNameConverter;
 use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
 use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
+use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
 final class SerializationProvider implements ServiceProviderInterface
 {
+    /**
+     * @return array<string, callable(): mixed>
+     */
     public function getFactories(): iterable
     {
         return [
@@ -34,9 +38,7 @@ final class SerializationProvider implements ServiceProviderInterface
                 ];
             },
             'serializer.encoders' => static function (): array {
-                return [
-                    new JsonEncoder(),
-                ];
+                return [new XmlEncoder()];
             },
             ClassMetadataFactoryInterface::class => static function (): ClassMetadataFactory {
                 return new ClassMetadataFactory(new AnnotationLoader(new AnnotationReader()));
@@ -68,6 +70,9 @@ final class SerializationProvider implements ServiceProviderInterface
         ];
     }
 
+    /**
+     * @return array<string, callable(): mixed>
+     */
     public function getExtensions(): iterable
     {
         return [];
