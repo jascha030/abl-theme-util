@@ -34,6 +34,11 @@ final class SerializationProvider implements ServiceProviderInterface
             'serializer.normalizers' => static function (ContainerInterface $container): array {
                 return [
                     $container->get(AbstractObjectNormalizer::class),
+                    new GetSetMethodNormalizer(
+                        classMetadataFactory: $container->get(ClassMetadataFactoryInterface::class),
+                        nameConverter: $container->get(AdvancedNameConverterInterface::class),
+                        propertyTypeExtractor: $container->get(PropertyInfoExtractorInterface::class),
+                    ),
                     new ArrayDenormalizer(),
                 ];
             },
