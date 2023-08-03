@@ -6,17 +6,21 @@ namespace Jascha030\LiveTheme\Container;
 
 use DI\Container;
 use DI\ContainerBuilder as DIContainerBuilder;
+use Exception;
 
 /**
  * @extends DIContainerBuilder<Container>
  */
 final class Builder extends DIContainerBuilder
 {
-    public function __construct(private Config $config)
+    public function __construct(private readonly Config $config)
     {
         parent::__construct();
     }
 
+    /**
+     * @throws Exception
+     */
     public function build(): Container
     {
         $this
