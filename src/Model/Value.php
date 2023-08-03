@@ -9,7 +9,7 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 class Value
 {
     #[SerializedName('@Value')]
-    private null|float|int|string $value;
+    private null|float|int|string $value = null;
 
     public function getValue(): null|float|int|string
     {
